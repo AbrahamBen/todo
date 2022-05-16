@@ -1,0 +1,26 @@
+<h1>Liste des tâches à réaliser</h1>
+<ul class="list-group">
+  <li class="list-group-item" *ngFor="let todo of todos;let i = index">
+   <div
+     [ngClass]="{inProgress:todo.todoStatus,completed : !todo.todoStatus}">
+     <a href="{{todo.image}}">
+       <img [src]="todo.image" alt="{{todo.image}}">
+     </a>
+     {{todo.todoName}}
+     <button class="btn btn-primary mx-1"
+             (click)="onChangeStatus(i)"
+             [disabled]="todo.todoStatus">
+       <span [ngClass]="{'spinner-grow spinner-grow-sm':todo.todoStatus}"></span>
+       {{todo.todoStatus ? 'En cours' : 'Commencer'}}
+     </button>
+     <button class="btn btn-success"
+             (click)="onChangeStatus(i)"
+             [disabled]="!todo.todoStatus">
+       {{todo.todoStatus ? 'Terminer':'Terminée'}}
+     </button>
+     <input type="text"
+            [(ngModel)]="todo.todoName"
+            class="form-control">
+   </div>
+  </li>
+</ul>
