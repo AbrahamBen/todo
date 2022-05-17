@@ -1,4 +1,4 @@
-<h1>Liste des tâches à réaliser</h1>
+<h1 [ngStyle]="{color:colorText}">Liste des tâches à réaliser</h1>
 <ul class="list-group">
   <li class="list-group-item" *ngFor="let todo of todos;let i = index">
    <div
@@ -18,7 +18,19 @@
              [disabled]="!todo.todoStatus">
        {{todo.todoStatus ? 'Terminer':'Terminée'}}
      </button>
-     <input type="text"
+      <!--Modification actions-->
+     <button class="btn btn-danger mx-1"
+             *ngIf="!todo.isModif"
+             (click)="onChangeModif(i)">
+       Modifier
+     </button>
+     <button class="btn btn-success"
+             *ngIf="todo.isModif"
+             (click)="onChangeModif(i)">
+       Modification terminée
+     </button>
+     <input *ngIf="todo.isModif"
+       type="text"
             [(ngModel)]="todo.todoName"
             class="form-control">
    </div>
