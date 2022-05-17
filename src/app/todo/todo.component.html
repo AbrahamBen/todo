@@ -14,7 +14,7 @@
        <span [ngClass]="{'spinner-grow spinner-grow-sm':todo.todoStatus}"></span>
        {{todo.todoStatus ? 'En cours' : 'Commencer'}}
      </button>
-     <button class="btn btn-success"
+     <button class="btn btn-success  mx-1"
              (click)="onChangeStatus(i)"
              [disabled]="!todo.todoStatus">
        {{todo.todoStatus ? 'Terminer':'Terminée'}}
