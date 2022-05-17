@@ -12,6 +12,7 @@ export class TodoComponent implements OnInit {
   public todoThree = 'Projet 3'
   public todoFour = 'Projet 4'
   public colorText:string = 'blue'
+  public today = new Date();
 
   public todos = [
     {
