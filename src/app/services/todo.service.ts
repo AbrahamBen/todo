@@ -44,5 +44,12 @@ export class TodoService{
     this.todos[i].isModif = !this.todos[i].isModif;
   }
 
+  public getTodo(index :number){
+    if(this.todos[index]){
+      return this.todos[index]
+    }
+    return  false
+  }
+
 
 }

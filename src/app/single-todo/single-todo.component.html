@@ -1,0 +1,10 @@
+<div class="alert alert-warning" *ngIf="!todo">{{error}}</div>
+<div  *ngIf="todo" class="card" style="width: 18rem;">
+  <img [src]="todo.image" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{todo.todoName}}</h5>
+    <h5 class="card-title">{{todo.todoStatus}}</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a [routerLink]="['/todos']" class="btn btn-primary">retour</a>
+  </div>
+</div>

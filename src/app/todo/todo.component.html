@@ -30,6 +30,10 @@
              (click)="onChangeModif(i)">
        Modification terminée
      </button>
+     <button class="btn btn-success mx-1"
+             (click)="onView(i)">
+      Voir plus
+     </button>
      <input *ngIf="todo.isModif"
        type="text"
             [(ngModel)]="todo.todoName"
