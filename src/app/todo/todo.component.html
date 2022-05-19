@@ -1,7 +1,7 @@
 <p class="alert alert-info">Nous sommes le {{today | date : 'dd/MM/yyyy HH:mm'}}</p>
 <h1 [ngStyle]="{color:colorText}">Liste des tâches à réaliser</h1>
 <ul class="list-group">
-  <li class="list-group-item" *ngFor="let todo of todos;let i = index">
+  <li class="list-group-item" *ngFor="let todo of todos ;let i = index">
    <div
      [ngClass]="{inProgress:todo.todoStatus,completed : !todo.todoStatus}">
      <a href="{{todo.image}}">

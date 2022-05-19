@@ -20,7 +20,13 @@ export class TodoComponent implements OnInit {
 
   ngOnInit(): void {
     this.today = this.todoService.today;
-    this.todos = this.todoService.todos.slice();
+    this.todoService.todos
+      .then((data:any)=>{
+        this.todos = data
+      })
+      .catch((err:any)=>{
+        console.log('Erreur de chargement des données', err);
+      })
   }
 
   public onChangeStatus(index:number){

@@ -13,7 +13,7 @@ import { ConactComponent } from './conact/conact.component';
 import {RouterModule, Routes} from "@angular/router";
 
 const routes : Routes = [
-  {path:'', component:HomeComponent},
+  {path:'', component:TodoComponent},
   {path:'home', component:HomeComponent},
   {path:'contact', component:ConactComponent},
   {path:'todos', component:TodoComponent},
