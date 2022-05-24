@@ -1,71 +1,82 @@
 import {Injectable} from "@angular/core";
+import {Subject} from "rxjs";
+import {Todo} from "../models/todo";
 
 @Injectable({
   providedIn:'root'
 })
 export class TodoService{
   public today = new Date();
-  public todos:any;
-  public todoSlice:any;
+  todoSubject = new Subject<any[]>();
+  public todos:Todo[];
+
+
+
+
 
   constructor() {
-    this.todos = new Promise((resolve,reject)=>{
-      const data = [
-        {
-          todoName: 'Projet 1',
-          todoStatus: true,
-          image: 'https://placeimg.com/150/150/tech',
-          description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore',
-          isModif:false
-        },
-        {
-          todoName: 'Projet 2',
-          todoStatus : false,
-          image: 'https://placeimg.com/150/150/tech',
-          description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore',
-          isModif:false
-        },
-        {
-          todoName: 'Projet 3',
-          todoStatus : true,
-          image: 'https://placeimg.com/150/150/tech',
-          description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore',
-          isModif:false
-        },
-        {
-          todoName: 'Projet 4',
-          todoStatus : false,
-          image: 'https://placeimg.com/150/150/tech',
-          description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore',
-          isModif:false
-        },
-      ];
-      if(data.length){
-        setTimeout(()=>{
-          resolve(data)
-          this.todoSlice = data;
-        },3000)
-      }else{
-        reject('Aucune données disponible');
-      }
-    });
+   setTimeout(()=>{
+     this.todos = [
+       {
+         todoName: 'Projet 1',
+         todoStatus: true,
+         image: 'https://placeimg.com/150/150/tech',
+         description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore',
+         isModif:false
+       },
+       {
+         todoName: 'Projet 2',
+         todoStatus : false,
+         image: 'https://placeimg.com/150/150/tech',
+         description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore',
+         isModif:false
+       },
+       {
+         todoName: 'Projet 3',
+         todoStatus : true,
+         image: 'https://placeimg.com/150/150/tech',
+         description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore',
+         isModif:false
+       },
+       {
+         todoName: 'Projet 4',
+         todoStatus : false,
+         image: 'https://placeimg.com/150/150/tech',
+         description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore',
+         isModif:false
+       },
+     ];
+     this.emitTodo();
+   },3000);
+  }
+
+  public emitTodo(){
+    this.todoSubject.next(this.todos);
   }
 
   public onChangeStatus(index:number){
-    this.todoSlice[index].todoStatus = !this.todoSlice[index].todoStatus;
+    this.todos[index].todoStatus = !this.todos[index].todoStatus;
+    this.emitTodo();
   }
 
 
   public onChangeModif(i:number){
-    this.todoSlice[i].isModif = !this.todoSlice[i].isModif;
+    this.todos[i].isModif = !this.todos[i].isModif;
+    this.emitTodo();
   }
 
   public getTodo(index :number){
-    if(this.todoSlice[index]){
-      return this.todoSlice[index]
+    if(this.todos[index]){
+      return this.todos[index]
     }
     return  false
   }
+
+  public addTodo(todo:Todo):void{
+    this.todos.unshift(todo);
+    this.emitTodo();
+  }
+
 
 
 }
